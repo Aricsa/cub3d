@@ -12,7 +12,7 @@
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-NAME = 
+NAME = cub3D
 NAME_TIME = name_time
 OBJ = 
 
