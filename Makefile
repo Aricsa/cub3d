@@ -6,7 +6,7 @@
 #    By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:45:19 by chbaek            #+#    #+#              #
-#    Updated: 2023/07/01 17:18:54 by chbaek           ###   ########seoul.kr   #
+#    Updated: 2023/11/01 17:49:48 by chbaek           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,4 +36,6 @@ re:
 	make fclean
 	make all
 
-.PHONY : all clean fclean re
+bonus:
+
+.PHONY : all clean fclean re bonus
