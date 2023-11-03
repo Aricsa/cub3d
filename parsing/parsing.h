@@ -18,6 +18,19 @@
 # include <unistd.h>
 # include <string.h>
 
+typedef struct s_game_info{
+	void	*mlx;
+	void	*win;
+	void	*texture[4];
+	int		floar[3];
+	int		ceiling[3];
+	char	direction;
+	char	**map;
+}	t_info;
+
+size_t	ft_strlen(char *s);
+void	error_print(char *message);
+int		is_dotcub(char *map_name);
 
 
 #endif
