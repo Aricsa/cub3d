@@ -12,10 +12,12 @@ int	is_dotcub(char *map_name)
 		map_name[name_len - 4] != '.')
 			return (0);
 	}
+	else
+		return (0);
 	return (1);
 }
 
 int	is_texture_ok()
 {
-
+	return 0;
 }

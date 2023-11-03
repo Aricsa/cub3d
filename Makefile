@@ -14,13 +14,13 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = cub3D
 NAME_TIME = name_time
-OBJ = 
+OBJ = parsing/main.o parsing/valid.o parsing/util.o
 
 all : $(NAME_TIME)
 
 $(NAME_TIME) : $(OBJ)
 	$(RM) $(NAME_TIME)
-	
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	touch $(NAME_TIME)
 
 $(NAME) : all
