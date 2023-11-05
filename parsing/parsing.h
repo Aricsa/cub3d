@@ -31,6 +31,7 @@ typedef struct s_game_info{
 size_t	ft_strlen(char *s);
 void	error_print(char *message);
 int		is_dotcub(char *map_name);
+void	*safe_malloc(void *a, size_t typesize, size_t len);
 
 
 #endif

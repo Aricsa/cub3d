@@ -14,6 +14,9 @@
 
 int main(int argc, char *argv[])
 {
+	t_info	*game;
+
+	
 	if (argc == 2)
 	{
 		if (is_dotcub(argv[1]))

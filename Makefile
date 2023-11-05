@@ -12,24 +12,38 @@
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+CLIB = -lm -Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
 NAME = cub3D
 NAME_TIME = name_time
-OBJ = parsing/main.o parsing/valid.o parsing/util.o
+LIBMLX = mlx/libmlx.dylib
+SRCS = parsing/main.c parsing/valid.c parsing/util.c
+OBJS = $(SRCS:.c=.o)
+HEADER = parsing/parsing.h
+INCLUDE = parsing
 
 all : $(NAME_TIME)
 
-$(NAME_TIME) : $(OBJ)
+$(NAME_TIME) : $(HEADER) $(OBJS) $(LIBMLX)
 	$(RM) $(NAME_TIME)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(CLIB) $(OBJS) -o $(NAME)
+	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
 	touch $(NAME_TIME)
 
 $(NAME) : all
 
+$(LIBMLX)   :
+    make -C $(dir $(LIBMLX))
+
+%.o : %.c
+    $(CC) $(CFLAGS) -I$(INCLUDE) -o $@ -c $<
+
 clean :
-	$(RM) $(OBJ)
+	$(RM) $(OBJS)
+	make -C $(dir $(LIBMLX)) clean
 
 fclean :
-	make clean
+	$(RM) $(OBJS)
+	make -C $(dir $(LIBMLX)) fclean
 	$(RM) $(NAME) $(NAME_TIME)
 
 re:
