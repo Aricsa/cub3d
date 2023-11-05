@@ -42,8 +42,7 @@ clean :
 	make -C $(dir $(LIBMLX)) clean
 
 fclean :
-	$(RM) $(OBJS)
-	make -C $(dir $(LIBMLX)) fclean
+	make clean
 	$(RM) $(NAME) $(NAME_TIME)
 
 re:
