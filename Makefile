@@ -1,38 +1,34 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/17 16:45:19 by chbaek            #+#    #+#              #
-#    Updated: 2023/07/01 17:18:54 by chbaek           ###   ########seoul.kr   #
-#                                                                              #
-# **************************************************************************** #
+NAME=cub3D
+CC=cc
+CFLAGS=-Wall -Werror -Wextra -g
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-NAME = 
-NAME_TIME = name_time
-OBJ = 
+LIB=libft.a
+LIB_PATH=libft
+LIBMLX=libmlx.dylib
+DYLD_LIBRARY_PATH=minilibx_mms_20200219
 
-all : $(NAME_TIME)
+RM=rm -rf
 
-$(NAME_TIME) : $(OBJ)
-	$(RM) $(NAME_TIME)
-	
-	touch $(NAME_TIME)
+SRCS= $(addprefix srcs/, main.c)
+OBJS=$(SRCS:.c=.o)
 
-$(NAME) : all
+all : $(NAME)
+
+$(NAME) : $(OBJS)
+	make -C $(DYLD_LIBRARY_PATH)
+	cp $(DYLD_LIBRARY_PATH)/$(LIBMLX) ./
+	$(CC) $(OBJS) -I. -I$(DYLD_LIBRARY_PATH) $(DYLD_LIBRARY_PATH)/$(LIBMLX) -framework OpenGL -framework Appkit -o $(NAME)
+
+%.o:%.c
+	$(CC) -I. -I$(DYLD_LIBRARY_PATH) -c $< -o $@
 
 clean :
-	$(RM) $(OBJ)
+	$(RM) $(OBJS)
 
 fclean :
-	make clean
-	$(RM) $(NAME) $(NAME_TIME)
+	$(RM) $(OBJS) $(NAME) $(LIBMLX)
 
-re:
+re :
 	make fclean
 	make all
 
