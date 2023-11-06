@@ -6,7 +6,7 @@
 #    By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:45:19 by chbaek            #+#    #+#              #
-#    Updated: 2023/11/01 17:49:48 by chbaek           ###   ########.fr        #
+#    Updated: 2023/11/06 19:43:37 by chbaek           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ CLIB = -lm -Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
 NAME = cub3D
 NAME_TIME = name_time
 LIBMLX = mlx/libmlx.dylib
-SRCS = parsing/main.c parsing/valid.c parsing/util.c
+SRCS = parsing/main.c parsing/util.c parsing/valid_util.c \
+	parsing/load_map.c parsing/is_dotcub.c parsing/ft_split.c \
+	gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)
-HEADER = parsing/parsing.h
+HEADER = parsing/parsing.h gnl/get_next_line.h
 INCLUDE = parsing
 
 all : $(NAME_TIME)
@@ -31,11 +33,11 @@ $(NAME_TIME) : $(HEADER) $(OBJS) $(LIBMLX)
 
 $(NAME) : all
 
-$(LIBMLX)   :
-    make -C $(dir $(LIBMLX))
+$(LIBMLX) :
+	make -C $(dir $(LIBMLX))
 
 %.o : %.c
-    $(CC) $(CFLAGS) -I$(INCLUDE) -o $@ -c $<
+	$(CC) $(CFLAGS) -I $(INCLUDE) -o $@ -c $<
 
 clean :
 	$(RM) $(OBJS)

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_dotcub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 17:46:49 by chbaek            #+#    #+#             */
-/*   Updated: 2023/11/06 18:45:34 by chbaek           ###   ########.fr       */
+/*   Created: 2023/11/06 16:55:28 by chbaek            #+#    #+#             */
+/*   Updated: 2023/11/06 16:55:40 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int main(int argc, char *argv[])
+void	is_dotcub(char *map_name)
 {
-	t_info	*game;
+	size_t	name_len;
 
-	game = NULL;
-	game = safe_malloc(game, sizeof(t_info), 1);
-	game -> mlx = mlx_init();
-	if (argc != 2)
-		error_print("Wrong argument count");
-	is_dotcub(argv[1]);
-	load_map(argv[1], game);
-	printf("%s\n", game -> tex_add[0]);
-	printf("%s\n", game -> tex_add[1]);
-	// is_valid_map(game);
-	// init_game(game);
-	
-	//구현부
-
-	return (0);
+	name_len = ft_strlen(map_name);
+	if (name_len >= 5)
+	{
+		if (map_name[name_len - 1] != 'b' || \
+		map_name[name_len - 2] != 'u' || map_name[name_len - 3] != 'c' || \
+		map_name[name_len - 4] != '.')
+			error_print("Wrong filename");
+	}
+	else
+		error_print("Wrong filename");
 }

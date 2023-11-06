@@ -1,16 +1,22 @@
 #include "parsing.h"
 
-size_t	ft_strlen(char *s)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t i;
-	
-	i = 0;
-	if (s != NULL)
+	unsigned char	*con_s1;
+	unsigned char	*con_s2;
+
+	if (n == 0 || s1 == NULL || s2 == NULL)
+		error_print("Wrong string input");
+	con_s1 = (unsigned char *)s1;
+	con_s2 = (unsigned char *)s2;
+	while (*con_s1 && *con_s2 && --n > 0)
 	{
-		while (s[i])
-			i++;
+		if (*con_s1 != *con_s2)
+			return (*con_s1 - *con_s2);
+		con_s1++;
+		con_s2++;
 	}
-	return (i);
+	return (*con_s1 - *con_s2);
 }
 
 void	*safe_malloc(void *a, size_t typesize, size_t len)
@@ -29,8 +35,16 @@ void	*safe_malloc(void *a, size_t typesize, size_t len)
 		((char *)a)[i++] = '\0';
 	return (a);
 }
+
 void	error_print(char *message)
 {
 	printf("Error\n%s\n", message);
 	exit(1);
+}
+
+int	ft_isspace(char c)
+{
+	if (c == 9 || c == 10 || c == 11 || c == 12 || c == 13 || c == 32)
+		return (1);
+	return (0);
 }
