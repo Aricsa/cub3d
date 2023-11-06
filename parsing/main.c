@@ -23,10 +23,7 @@ int main(int argc, char *argv[])
 		error_print("Wrong argument count");
 	is_dotcub(argv[1]);
 	load_map(argv[1], game);
-	printf("%s\n", game -> tex_add[0]);
-	printf("%s\n", game -> tex_add[1]);
-	// is_valid_map(game);
-	// init_game(game);
+	is_valid_map(game);
 	
 	//구현부
 

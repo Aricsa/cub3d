@@ -12,6 +12,16 @@
 
 #include "parsing.h"
 
+void	set_FC(char *temp, int type, t_info *game)
+{
+	size_t	i;
+
+	i = 0;
+	while (ft_isspace(temp[i]))
+		i++;
+	// 구조체 맞추기/
+}
+
 void	get_texture(char *temp, int type, t_info *game)
 {
 	size_t	i;
@@ -23,20 +33,24 @@ void	get_texture(char *temp, int type, t_info *game)
 	is_valid_fd(temp + i, &fd);
 	close(fd);
 	(game -> tex_add)[type] = ft_strdup(temp + i);
-	game->texture_count++;
+	(game -> texture_flag[type]++);
 }
 
 void	is_texture_ok(char *temp, t_info *game)
 {
 
-	if (ft_strncmp(temp, "NO", 2) == 0)
-		get_texture(temp + 2, NO, game);
-	else if (ft_strncmp(temp, "SO", 2) == 0)
-		get_texture(temp + 2, SO, game);
-	else if (ft_strncmp(temp, "WE", 2) == 0)
-		get_texture(temp + 2, WE, game);
-	else if (ft_strncmp(temp, "EA", 2) == 0)
-		get_texture(temp + 2, EA, game);
+	if (ft_strncmp(temp, "NO ", 3) == 0)
+		get_texture(temp + 3, NO, game);
+	else if (ft_strncmp(temp, "SO ", 3) == 0)
+		get_texture(temp + 3, SO, game);
+	else if (ft_strncmp(temp, "WE ", 3) == 0)
+		get_texture(temp + 3, WE, game);
+	else if (ft_strncmp(temp, "EA ", 3) == 0)
+		get_texture(temp + 3, EA, game);
+	else if (ft_strncmp(temp, "F ", 2) == 0)
+		set_FC(temp + 2, F, game);
+	else if (ft_strncmp(temp, "C ", 2) == 0)
+		set_FCw(temp + 2, C, game);
 }
 
 void	load_map(char *name, t_info *game)
@@ -45,12 +59,17 @@ void	load_map(char *name, t_info *game)
 	char	*temp;
 	char	*temp2;
 
-	game->texture_count = 0;
+	game->texture_flag[0] = 0;
+	game->texture_flag[1] = 0;
+	game->texture_flag[2] = 0;
+	game->texture_flag[3] = 0;
+	game->texture_flag[4] = 0;
+	game->texture_flag[5] = 0;
 	is_valid_fd(name, &fd);
 	temp = get_next_line(fd);
 	if (temp == NULL)
 		error_print("No map");
-	while (game->texture_count != 6)
+	while (texture_count(game) != 1)
 	{
 		if (temp[0] != '\n')
 			is_texture_ok(temp, game);

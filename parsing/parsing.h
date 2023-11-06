@@ -21,12 +21,44 @@
 # include "../mlx/mlx.h"
 # include "../gnl/get_next_line.h"
 
-# define NO 1
-# define SO 2
-# define WE 3
-# define EA 4
-# define F 5
-# define C 6
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
+# define F 4
+# define C 5
+
+typedef struct s_texture_path
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+}	t_texture_path;
+
+typedef struct s_color
+{
+	int	red;
+	int	green;
+	int	blue;
+}	t_color;
+
+
+typedef struct s_parse_var
+{
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	int				map_width;
+	int				map_height;
+	int				**map;
+	t_color			floor_color;
+	t_color			cell_color;
+	t_texture_path	textures;
+}	t_parse_var;
 
 typedef struct s_game_info{
 	void	*mlx;
@@ -39,7 +71,7 @@ typedef struct s_game_info{
 	char	direction;
 	char	**map;
 	char	*tex_add[4];
-	int		texture_count;
+	int		texture_flag[6];
 }	t_info;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -56,6 +88,5 @@ void	load_map(char *name, t_info *game);
 void	is_texture_ok(char *line, t_info *game);
 void	is_valid_map(t_info *game);
 void	init_game(t_info *game);
-
 
 #endif
