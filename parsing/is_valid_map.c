@@ -35,8 +35,8 @@ void	is_right_content(t_parse_var *parse, int w, int h)
 				parse->map[h][w] != 'W' && parse->map[h][w] != 'E' && \
 				parse->map[h][w] != ' ')
 				error_print("Weird value in map");
-			if (parse->map[h][w] == 'N' && parse->map[h][w] == 'S' && \
-				parse->map[h][w] == 'W' && parse->map[h][w] == 'E')
+			if (parse->map[h][w] == 'N' || parse->map[h][w] == 'S' || \
+				parse->map[h][w] == 'W' || parse->map[h][w] == 'E')
 			{
 				if (parse->character_flag == 1)
 					error_print("Double character direction exists");
@@ -56,8 +56,8 @@ void	is_surrounded_by_1(t_parse_var *parse, int w, int h)
 	{
 		while (++w < (int)ft_strlen(parse->map[h]))
 		{
-			if (parse->map[h][w] == 'N' && parse->map[h][w] == 'S' && \
-				parse->map[h][w] == 'W' && parse->map[h][w] == 'E' && \
+			if (parse->map[h][w] == 'N' || parse->map[h][w] == 'S' || \
+				parse->map[h][w] == 'W' || parse->map[h][w] == 'E' || \
 				parse->map[h][w] == '0')
 			{
 				if (h == 0 || h == parse->map_height - 1 || \
