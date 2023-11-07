@@ -12,11 +12,3 @@
 
 #include "parsing.h"
 
-void	is_valid_fd(char *map, int *fd)
-{
-	*fd = open(map, O_RDONLY);
-	if (*fd < 0)
-		error_print("Open failed");
-}
-
-

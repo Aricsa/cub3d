@@ -75,6 +75,7 @@ char	**ft_split(const char *str, char c)
 	int		temp2;
 
 	word_cnt = ft_word_cnt(str, c);
+	answer = NULL;
 	answer = safe_malloc(answer, sizeof (char *), word_cnt + 1);
 	temp = 0;
 	while (temp < word_cnt)

@@ -16,8 +16,9 @@ CLIB = -lm -Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
 NAME = cub3D
 NAME_TIME = name_time
 LIBMLX = mlx/libmlx.dylib
-SRCS = parsing/main.c parsing/util.c parsing/parsing_util.c \
-	parsing/load_map.c parsing/is_dotcub.c parsing/ft_split.c \
+SRCS = parsing/main.c parsing/util.c parsing/util2.c parsing/load_map_util.c \
+	parsing/load_map.c parsing/load_map2.c parsing/is_dotcub.c parsing/ft_split.c \
+	parsing/is_valid_map.c \
 	gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)
 HEADER = parsing/parsing.h gnl/get_next_line.h

@@ -36,25 +36,41 @@ typedef struct s_parse_var
 	double	dir_y;
 	int		map_width;
 	int		map_height;
-	int		**map;
+	char	**map;
 	int		fc_color[2][3];
 	char	*texture_path[4];
+	char	character_dir;
+	int		character_flag;
 	int		texture_flag[6];
 }	t_parse_var;
 
+//	util.c
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*safe_malloc(void *a, size_t typesize, size_t len);
 void	error_print(char *message);
 int		ft_isspace(char c);
-
-char	**ft_split(const char *str, char c);
-
 void	is_valid_fd(char *map, int *fd);
 
+//	util2.c
+
+
+//	ft_split.c
+char	**ft_split(const char *str, char c);
+
+//	is_dotcub.c
 void	is_dotcub(char *map_name);
+
+//	load_map.c
 void	load_map(char *name, t_parse_var *parse);
+
+//	load_map2.c
 void	load_map2(char *temp, int fd, t_parse_var *parse);
+
+//	load_mad_util.c
+char	*ft_substr_non(char *temp);
 int		texture_count(t_parse_var *parse);
+
+//	is_valid_map.c
 void	is_valid_map(t_parse_var *parse);
 
 #endif

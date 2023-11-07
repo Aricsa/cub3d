@@ -20,6 +20,7 @@ void	init_parse(t_parse_var *parse)
 	parse->dir_y = 0;
 	parse->map_width = 0;
 	parse->map_height = 0;
+	parse->character_flag = 0;
 	parse->texture_flag[0] = 0;
 	parse->texture_flag[1] = 0;
 	parse->texture_flag[2] = 0;

@@ -12,6 +12,32 @@
 
 #include "parsing.h"
 
+char	*ft_substr_non(char *temp)
+{
+	size_t	i;
+	char	*temp2;
+
+	i = 0;
+	while (temp[i])
+	{
+		if (temp[i] == '\n')
+			break ;
+		i++;
+	}
+	if (!temp[i])
+		return NULL;
+	temp2 = NULL;
+	temp2 = safe_malloc(temp2, sizeof(char), i + 1);
+	i = 0;
+	while (temp[i] != '\n')
+	{
+		temp2[i] = temp[i];
+		i++;
+	}
+	temp2[i] = '\0';
+	return (temp2);
+}
+
 int		texture_count(t_parse_var *parse)
 {
 	int	i;
