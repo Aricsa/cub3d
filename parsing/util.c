@@ -25,11 +25,11 @@ void	*safe_malloc(void *a, size_t typesize, size_t len)
 	size_t	amount;
 
 	if (typesize == 0 || len == 0)
-		error_print("TRY TO MALLOC 0");
+		error_print("Try to malloc 0");
 	amount = typesize * len;
 	a = malloc(amount);
 	if (a == NULL)
-		error_print("MALLOC FAILED");
+		error_print("Malloc failed");
 	i = 0;
 	while (i < amount)
 		((char *)a)[i++] = '\0';

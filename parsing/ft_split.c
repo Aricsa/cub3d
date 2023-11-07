@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:26:28 by chbaek            #+#    #+#             */
-/*   Updated: 2023/11/06 17:26:47 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/07 12:01:19 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ static char	*ft_word_check(const char **str, char c)
 	{
 		if (index == 0)
 		{
-			answer = (char *)malloc(sizeof(char) * cnt + 1);
-			if (answer == NULL)
-				return (NULL);
+			answer = safe_malloc(answer, sizeof(char), cnt + 1);
 		}
 		answer[index] = **str;
 		(*str)++;
@@ -77,9 +75,7 @@ char	**ft_split(const char *str, char c)
 	int		temp2;
 
 	word_cnt = ft_word_cnt(str, c);
-	answer = (char **) malloc (sizeof (char *) * (word_cnt + 1));
-	if (answer == NULL)
-		return (NULL);
+	answer = safe_malloc(answer, sizeof (char *), word_cnt + 1);
 	temp = 0;
 	while (temp < word_cnt)
 	{
