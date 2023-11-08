@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbaek <chbaek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:46:49 by chbaek            #+#    #+#             */
-/*   Updated: 2023/11/07 11:13:04 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/08 19:55:54 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,10 @@ int main(int argc, char *argv[])
 	parse = safe_malloc(parse, sizeof(t_parse_var), 1);
 	if (argc != 2)
 		error_print("Wrong argument count");
-	is_dotcub(argv[1]);
+	is_dotid(argv[1], ".cub");
 	init_parse(parse);
 	load_map(argv[1], parse);
 	is_valid_map(parse);
-	
-	//구현부
-
+	con_map(parse);
 	return (0);
 }

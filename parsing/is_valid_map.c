@@ -28,6 +28,7 @@ void	is_right_content(t_parse_var *parse, int w, int h)
 {
 	while (++h < parse->map_height)
 	{
+		w = -1;
 		while (++w < (int)ft_strlen(parse->map[h]))
 		{
 			if (parse->map[h][w] != '0' && parse->map[h][w] != '1' && \
@@ -54,6 +55,7 @@ void	is_surrounded_by_1(t_parse_var *parse, int w, int h)
 {
 	while (++h < parse->map_height)
 	{
+		w = -1;
 		while (++w < (int)ft_strlen(parse->map[h]))
 		{
 			if (parse->map[h][w] == 'N' || parse->map[h][w] == 'S' || \
@@ -63,10 +65,13 @@ void	is_surrounded_by_1(t_parse_var *parse, int w, int h)
 				if (h == 0 || h == parse->map_height - 1 || \
 					w == 0 || w == parse->map_width - 1)
 					error_print("There is a hole in map");
+				if (w > (int)ft_strlen(parse->map[h + 1]) || \
+					w > (int)ft_strlen(parse->map[h - 1]))
+						error_print("There is a hole in map2");
 				if (parse->map[h][w + 1] == '\0' || parse->map[h][w + 1] == '\n' || \
 					parse->map[h][w + 1] == ' ' || parse->map[h][w - 1] == ' ' || \
 					parse->map[h + 1][w] == ' ' || parse->map[h - 1][w] == ' ')
-					error_print("There is a hole in map");
+					error_print("There is a hole in map3");
 			}
 		}
 	}
@@ -84,7 +89,6 @@ void	set_parse(t_parse_var *parse, int w)
 		if (w < len)
 			w = len;
 		i++;
-		printf("%s", parse->map[i]);
 	}
 	parse->map_width = w;
 	parse->map_height = i;

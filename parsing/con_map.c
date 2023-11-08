@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_dotcub.c                                        :+:      :+:    :+:   */
+/*   con_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 16:55:28 by chbaek            #+#    #+#             */
-/*   Updated: 2023/11/06 16:55:40 by chbaek           ###   ########.fr       */
+/*   Created: 2023/11/06 14:10:31 by chbaek            #+#    #+#             */
+/*   Updated: 2023/11/08 19:38:41 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	is_dotid(char *map_name, char *id)
+void	con_map(t_parse_var *parse)
 {
-	size_t	name_len;
+	int	**temp;
+	int	i;
+	int	j;
+	int	len;
 
-	name_len = ft_strlen(map_name);
-	if (name_len >= 5)
+	temp = NULL;
+	temp = safe_malloc(temp, sizeof(int *), parse->map_height);
+	i = -1;
+	while (++i < parse->map_height)
 	{
-		if (map_name[name_len - 1] != id[3] || \
-		map_name[name_len - 2] != id[2] || map_name[name_len - 3] != id[1] || \
-		map_name[name_len - 4] != id[0])
-			error_print("Wrong filename");
+		len = ft_strlen(parse->map[i]);
+		temp[i] = safe_malloc(temp[i], sizeof(int), len);
+		j = -1;
+		while (++j < len)
+			temp[i][j] = parse->map[i][j];
 	}
-	else
-		error_print("Wrong filename");
+	temp = parse->con_map;
 }

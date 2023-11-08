@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbaek <chbaek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:56:01 by chbaek            #+#    #+#             */
-/*   Updated: 2023/11/07 11:09:27 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/08 19:44:21 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,13 @@ void	set_fc(char *temp, int type, t_parse_var *parse)
 void	get_texture(char *temp, int type, t_parse_var *parse)
 {
 	size_t	i;
-	// int		fd;
 	char	*temp2;
 
 	i = 0;
 	while (ft_isspace(temp[i]))
 		i++;
 	temp2 = ft_substr_non(temp);
-	// is_valid_fd(temp + i, &fd);
-	// close(fd);
+	is_dotid(temp2, ".xpm");
 	parse -> texture_path[type] = ft_strdup(temp2);
 	if (parse -> texture_flag[type] == 0)
 		(parse -> texture_flag[type]++);
@@ -115,9 +113,6 @@ void	load_map(char *name, t_parse_var *parse)
 		free(temp);
 		temp = get_next_line(fd);
 	}
-	if (parse->fc_color[0][0] == parse->fc_color[1][0] && \
-		parse->fc_color[0][1] == parse->fc_color[1][1] && \
-		parse->fc_color[0][2] == parse->fc_color[1][2])
-			error_print("Floar and ceiling is same color..");
+	is_same_texture(parse);
 	load_map2(temp, fd, parse);
 }

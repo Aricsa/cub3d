@@ -6,7 +6,7 @@
 #    By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:45:19 by chbaek            #+#    #+#              #
-#    Updated: 2023/11/06 19:43:37 by chbaek           ###   ########.fr        #
+#    Updated: 2023/11/08 19:46:58 by chbaek           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,8 @@ CLIB = -lm -Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
 NAME = cub3D
 NAME_TIME = name_time
 LIBMLX = mlx/libmlx.dylib
-SRCS = parsing/main.c parsing/util.c parsing/util2.c parsing/load_map_util.c \
-	parsing/load_map.c parsing/load_map2.c parsing/is_dotcub.c parsing/ft_split.c \
-	parsing/is_valid_map.c \
+SRCS = parsing/main.c parsing/util.c parsing/load_map_util.c parsing/util2.c parsing/ft_split.c \
+	parsing/load_map.c parsing/load_map2.c parsing/is_dotcub.c parsing/con_map.c parsing/is_valid_map.c \
 	gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)
 HEADER = parsing/parsing.h gnl/get_next_line.h
@@ -26,7 +25,7 @@ INCLUDE = parsing
 
 all : $(NAME_TIME)
 
-$(NAME_TIME) : $(HEADER) $(OBJS) $(LIBMLX)
+$(NAME_TIME) : $(OBJS) $(HEADER) $(LIBMLX)
 	$(RM) $(NAME_TIME)
 	$(CC) $(CFLAGS) $(CLIB) $(OBJS) -o $(NAME)
 	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
