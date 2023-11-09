@@ -65,8 +65,8 @@ void	is_surrounded_by_1(t_parse_var *parse, int w, int h)
 				if (h == 0 || h == parse->map_height - 1 || \
 					w == 0 || w == parse->map_width - 1)
 					error_print("There is a hole in map");
-				if (w > (int)ft_strlen(parse->map[h + 1]) || \
-					w > (int)ft_strlen(parse->map[h - 1]))
+				if (w >= (int)ft_strlen(parse->map[h + 1]) || \
+					w >= (int)ft_strlen(parse->map[h - 1]))
 						error_print("There is a hole in map2");
 				if (parse->map[h][w + 1] == '\0' || parse->map[h][w + 1] == '\n' || \
 					parse->map[h][w + 1] == ' ' || parse->map[h][w - 1] == ' ' || \

@@ -6,7 +6,7 @@
 /*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:56:01 by chbaek            #+#    #+#             */
-/*   Updated: 2023/11/08 19:44:21 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:32:00 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	set_fc(char *temp, int type, t_parse_var *parse)
 
 void	get_texture(char *temp, int type, t_parse_var *parse)
 {
+	int		fd;
 	size_t	i;
 	char	*temp2;
 
@@ -70,6 +71,7 @@ void	get_texture(char *temp, int type, t_parse_var *parse)
 		i++;
 	temp2 = ft_substr_non(temp);
 	is_dotid(temp2, ".xpm");
+	is_valid_fd(temp2, &fd);
 	parse -> texture_path[type] = ft_strdup(temp2);
 	if (parse -> texture_flag[type] == 0)
 		(parse -> texture_flag[type]++);
