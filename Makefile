@@ -28,6 +28,12 @@ $(NAME) : $(OBJS_EXECUTE) $(OBJS_PARSING)
 %.o:%.c
 	$(CC) -I. -I$(DYLD_LIBRARY_PATH) -I$(INCLUDES) -c $< -o $@
 
+$(LIBMLX) :
+	make -C $(dir $(LIBMLX))
+
+%.o : %.c
+	$(CC) $(CFLAGS) -I $(INCLUDE) -o $@ -c $<
+
 clean :
 	$(RM) $(OBJS_EXECUTE) $(OBJS_PARSING)
 
