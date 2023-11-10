@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_executor.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:12:39 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/10 17:38:58 by junglee          ###   ########.fr       */
+/*   Updated: 2023/11/10 21:21:05 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,27 @@ typedef struct s_event
 	int	key_arrow_l;
 }	t_event;
 
-
-
 typedef struct s_parse_var
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	int		map_width;
-	int		map_height;
-	char	**char_map;
-	int		**map;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	int				map_width;
+	int				map_height;
+	char			**char_map;
+	int				**map;
 	t_texture_path	textures;
-	int		fc_color[2][3];
-	char	*texture_path[4];
-	char	character_dir;
-	int		character_flag;
-	int		texture_flag[6];
+	int				fc_color[2][3];
+	char			*texture_path[4];
+	char			character_dir;
+	int				character_flag;
+	int				texture_flag[6];
 }	t_parse_var;
 
-typedef	struct s_info
+typedef struct s_info
 {
 	t_parse_var	basic_var;
 	int			re_buf;
@@ -160,4 +158,4 @@ double old_dir_x, double old_plane_x);
 void	init_info(t_info *info);
 void	init_key_event(t_info *info);
 void	init_screen_buf(t_info *info);
-# endif
+#endif

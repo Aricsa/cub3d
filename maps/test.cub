@@ -1,7 +1,9 @@
-NO ./images/NO.xpm
-WE ./images/WE.xpm
-EA ./images/EA.xpm
-SO ./images/SO.xpm
+NO ./textures/Brick_Wall.xpm
+WE ./textures/Grass.xpm
+
+EA ./textures/Magma_Floor.xpm
+
+SO ./textures/Wooden_Floor_Horizontal.xpm
 C 225,30,0
 F 0,0,255
 

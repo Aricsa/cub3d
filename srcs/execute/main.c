@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:52:57 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/10 17:28:42 by junglee          ###   ########.fr       */
+/*   Updated: 2023/11/10 21:15:08 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static void	init_parse(t_parse_var *parse)
 	parse->texture_flag[3] = 0;
 	parse->texture_flag[4] = 0;
 	parse->texture_flag[5] = 0;
+	parse->plane_x = 0;
+	parse->plane_y = 0;
 }
 
 static void	map_test(t_info *info)

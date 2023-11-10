@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_valid_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/10 21:13:22 by chbaek            #+#    #+#             */
+/*   Updated: 2023/11/10 21:16:58 by chbaek           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 void	is_right_content2(t_parse_var *parse)
@@ -5,30 +17,22 @@ void	is_right_content2(t_parse_var *parse)
 	if (parse->character_dir == 'N')
 	{
 		parse->dir_x = -1;
-		parse->dir_y = 0;
-		parse->plane_x = 0;
 		parse->plane_y = 0.66;
 	}
 	else if (parse->character_dir == 'S')
 	{
 		parse->dir_x = 1;
-		parse->dir_y = 0;
-		parse->plane_x = 0;
 		parse->plane_y = -0.66;
 	}
 	else if (parse->character_dir == 'W')
 	{
-		parse->dir_x = 0;
 		parse->dir_y = -1;
 		parse->plane_x = -0.66;
-		parse->plane_y = 0;
 	}
 	else if (parse->character_dir == 'E')
 	{
-		parse->dir_x = 0;
 		parse->dir_y = 1;
 		parse->plane_x = 0.66;
-		parse->plane_y = 0;
 	}
 }
 
@@ -73,14 +77,17 @@ void	is_surrounded_by_1(t_parse_var *parse, int w, int h)
 			{
 				if (h == 0 || h == parse->map_height - 1 || \
 					w == 0 || w == parse->map_width - 1)
-					error_print("There is a hole in map");
+					error_print("There is a hole in map : type1");
 				if (w >= (int)ft_strlen(parse->char_map[h + 1]) || \
 					w >= (int)ft_strlen(parse->char_map[h - 1]))
-						error_print("There is a hole in map2");
-				if (parse->char_map[h][w + 1] == '\0' || parse->char_map[h][w + 1] == '\n' || \
-					parse->char_map[h][w + 1] == ' ' || parse->char_map[h][w - 1] == ' ' || \
-					parse->char_map[h + 1][w] == ' ' || parse->char_map[h - 1][w] == ' ')
-					error_print("There is a hole in map3");
+					error_print("There is a hole in map : type2");
+				if (parse->char_map[h][w + 1] == '\0' || \
+					parse->char_map[h][w + 1] == '\n' || \
+					parse->char_map[h][w + 1] == ' ' || \
+					parse->char_map[h][w - 1] == ' ' || \
+					parse->char_map[h + 1][w] == ' ' || \
+					parse->char_map[h - 1][w] == ' ')
+					error_print("There is a hole in map : type3");
 			}
 		}
 	}
@@ -89,7 +96,7 @@ void	is_surrounded_by_1(t_parse_var *parse, int w, int h)
 void	set_parse(t_parse_var *parse, int w)
 {
 	int	i;
-	int len;
+	int	len;
 
 	i = 0;
 	while (parse->char_map[i] != NULL)

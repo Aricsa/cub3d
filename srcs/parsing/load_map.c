@@ -6,7 +6,7 @@
 /*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:56:01 by chbaek            #+#    #+#             */
-/*   Updated: 2023/11/10 20:26:23 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/10 21:25:05 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	set_fc_atoi(char **char_rgb, int type, t_parse_var *parse)
 {
-	int	i;
+	int		i;
 	size_t	j;
-	int	k;
+	int		k;
 
-	i = 0;
-	while (i < 3)
+	i = -1;
+	while (++i < 3)
 	{
 		j = 0;
 		k = 0;
@@ -27,7 +27,8 @@ void	set_fc_atoi(char **char_rgb, int type, t_parse_var *parse)
 		{
 			if (char_rgb[i][j] >= '0' && char_rgb[i][j] <= '9')
 				k = k * 10 + char_rgb[i][j] - '0';
-			else if (i == 2 && j != 0 && char_rgb[i][j] == '\n' && char_rgb[i][j + 1] == '\0')
+			else if (i == 2 && j != 0 && char_rgb[i][j] == '\n' && \
+					char_rgb[i][j + 1] == '\0')
 				break ;
 			else
 				error_print("Weird FC texture RGB");
@@ -36,11 +37,8 @@ void	set_fc_atoi(char **char_rgb, int type, t_parse_var *parse)
 			j++;
 		}
 		parse->fc_color[type][i] = k;
-		i++;
 	}
-	if (parse -> texture_flag[type + 4] != 0)
-		error_print("Double texture declared");
-	parse->texture_flag[type + 4]++;
+	set_fc_atoi_util(parse, type);
 }
 
 void	set_fc(char *temp, int type, t_parse_var *parse)
@@ -82,7 +80,6 @@ void	get_texture(char *temp, int type, t_parse_var *parse)
 
 void	is_texture_ok(char *temp, t_parse_var *parse)
 {
-
 	if (ft_strncmp(temp, "NO ", 3) == 0)
 		get_texture(temp + 3, NO, parse);
 	else if (ft_strncmp(temp, "SO ", 3) == 0)
