@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:48:56 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/10 17:40:32 by junglee          ###   ########.fr       */
+/*   Updated: 2023/11/11 00:00:31 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_executor.h"
 #include "mlx.h"
-# include <stdio.h> //test
 
 static void	draw_wall(t_info *info);
 static void	draw_floor(t_info *info);
@@ -20,7 +19,6 @@ static void	draw_ceiling(t_info *info);
 
 void	draw(t_info *info)
 {
-	//draw_ceiling(info);
 	draw_floor(info);
 	draw_wall(info);
 }
@@ -80,9 +78,6 @@ static void	draw_ceiling(t_info *info)
 	int	color;
 
 	x = 0;
-	//color = create_trgb(0, info->basic_var.ceil_color.red, \
-	//info->basic_var.ceil_color.green, \
-	//info->basic_var.ceil_color.blue);
 	color = BLUE;
 	while (x < SCREENWIDTH)
 	{

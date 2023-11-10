@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:39:39 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/10 17:45:41 by junglee          ###   ########.fr       */
+/*   Updated: 2023/11/11 00:10:43 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_executor.h"
 #include <math.h>
-# include <stdio.h>
 #define WALL_X 1
 #define WALL_Y 0
 #define EA 0
@@ -37,10 +36,7 @@ void	perform_dda(t_info *info)
 			info->side = 1;
 		}
 		if (info->basic_var.map[info->map_x][info->map_y] == 1)
-		{
-			printf("%d %d\n", info->map_x, info->map_y);
 			info->hit = 1;
-		}
 	}
 	if (info->side == 0)
 		info->perp_wall_dist = (info->map_x - info->basic_var.pos_x + \
@@ -59,7 +55,6 @@ void	calc_draw_pos(t_info *info)
 	info->draw_end = info->line_height / 2 + SCREENHEIGHT / 2;
 	if (info->draw_end >= SCREENHEIGHT)
 		info->draw_end = SCREENHEIGHT - 1;
-	// ,,
 	if (info->side == WALL_X)
 	{
 		if (info->raydir_x > 0)
@@ -98,13 +93,14 @@ void	mapping_texture_color(t_info *info, int x)
 
 	y = info->draw_start;
 	info->step = 1.0 * TEXHEIGHT / info->line_height;
-	info->tex_pos = (info->draw_start - SCREENHEIGHT / 2 + info->line_height / 2) \
-	* info->step;
+	info->tex_pos = (info->draw_start - SCREENHEIGHT / 2 + \
+					info->line_height / 2) * info->step;
 	while (y < info->draw_end)
 	{	
 		info->tex_y = (int)info->tex_pos & (TEXHEIGHT - 1);
 		info->tex_pos += info->step;
-		info->texture_color = info->texture[info->tex_num][TEXHEIGHT * info->tex_y + info->tex_x];
+		info->texture_color = \
+		info->texture[info->tex_num][TEXHEIGHT * info->tex_y + info->tex_x];
 		if (info->side == 1)
 			info->texture_color = (info->texture_color >> 1) & 8355711;
 		info->buf[y][x] = info->texture_color;
