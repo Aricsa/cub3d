@@ -1,38 +1,40 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/17 16:45:19 by chbaek            #+#    #+#              #
-#    Updated: 2023/07/01 17:18:54 by chbaek           ###   ########seoul.kr   #
-#                                                                              #
-# **************************************************************************** #
+NAME=cub3D
+CC=cc
+CFLAGS=-Wall -Werror -Wextra -g
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-NAME = 
-NAME_TIME = name_time
-OBJ = 
+LIB=libft.a
+LIB_PATH=libft
+LIBMLX=libmlx.dylib
+DYLD_LIBRARY_PATH=minilibx_mms_20200219
+INCLUDES=includes
 
-all : $(NAME_TIME)
+RM=rm -rf
 
-$(NAME_TIME) : $(OBJ)
-	$(RM) $(NAME_TIME)
-	
-	touch $(NAME_TIME)
+SRCS_EXECUTE=$(addprefix srcs/execute/, main.c draw.c event.c key_update.c load_asset.c raycasting_1.c raycasting_2.c util.c init.c) srcs/gnl/get_next_line_utils.c srcs/gnl/get_next_line.c
 
-$(NAME) : all
+SRCS_PARSING=$(addprefix srcs/parsing/, con_map.c is_dotcub.c load_map.c load_map_util.c util2.c ft_split.c is_valid_map.c load_map2.c util.c)
+
+OBJS_EXECUTE=$(SRCS_EXECUTE:.c=.o)
+
+OBJS_PARSING=$(SRCS_PARSING:.c=.o)
+
+all : $(NAME)
+
+$(NAME) : $(OBJS_EXECUTE) $(OBJS_PARSING)
+	make -C $(DYLD_LIBRARY_PATH)
+	cp $(DYLD_LIBRARY_PATH)/$(LIBMLX) ./
+	$(CC) $(OBJS_EXECUTE) $(OBJS_PARSING) -I. -I$(DYLD_LIBRARY_PATH) $(DYLD_LIBRARY_PATH)/$(LIBMLX) -I$(INCLUDES) -framework OpenGL -framework Appkit -o $(NAME)
+
+%.o:%.c
+	$(CC) -I. -I$(DYLD_LIBRARY_PATH) -I$(INCLUDES) -c $< -o $@
 
 clean :
-	$(RM) $(OBJ)
+	$(RM) $(OBJS_EXECUTE) $(OBJS_PARSING)
 
 fclean :
-	make clean
-	$(RM) $(NAME) $(NAME_TIME)
+	$(RM) $(OBJS_EXECUTE) $(OBJS_PARSING) $(NAME) $(LIBMLX)
 
-re:
+re :
 	make fclean
 	make all
 
