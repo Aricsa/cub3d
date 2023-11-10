@@ -1,37 +1,32 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/17 16:45:19 by chbaek            #+#    #+#              #
-#    Updated: 2023/11/08 19:46:58 by chbaek           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME=cub3D
+CC=cc
+CFLAGS=-Wall -Werror -Wextra -g
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-CLIB = -lm -Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
-NAME = cub3D
-NAME_TIME = name_time
-LIBMLX = mlx/libmlx.dylib
-SRCS = parsing/main.c parsing/util.c parsing/load_map_util.c parsing/util2.c parsing/ft_split.c \
-	parsing/load_map.c parsing/load_map2.c parsing/is_dotcub.c parsing/con_map.c parsing/is_valid_map.c \
-	gnl/get_next_line.c gnl/get_next_line_utils.c
-OBJS = $(SRCS:.c=.o)
-HEADER = parsing/parsing.h gnl/get_next_line.h
-INCLUDE = parsing
+LIB=libft.a
+LIB_PATH=libft
+LIBMLX=libmlx.dylib
+DYLD_LIBRARY_PATH=minilibx_mms_20200219
+INCLUDES=includes
 
-all : $(NAME_TIME)
+RM=rm -rf
 
-$(NAME_TIME) : $(OBJS) $(HEADER) $(LIBMLX)
-	$(RM) $(NAME_TIME)
-	$(CC) $(CFLAGS) $(CLIB) $(OBJS) -o $(NAME)
-	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $(NAME)
-	touch $(NAME_TIME)
+SRCS_EXECUTE=$(addprefix srcs/execute/, main.c draw.c event.c key_update.c load_asset.c raycasting_1.c raycasting_2.c util.c init.c) srcs/gnl/get_next_line_utils.c srcs/gnl/get_next_line.c
 
-$(NAME) : all
+SRCS_PARSING=$(addprefix srcs/parsing/, con_map.c is_dotcub.c load_map.c load_map_util.c util2.c ft_split.c is_valid_map.c load_map2.c util.c)
+
+OBJS_EXECUTE=$(SRCS_EXECUTE:.c=.o)
+
+OBJS_PARSING=$(SRCS_PARSING:.c=.o)
+
+all : $(NAME)
+
+$(NAME) : $(OBJS_EXECUTE) $(OBJS_PARSING)
+	make -C $(DYLD_LIBRARY_PATH)
+	cp $(DYLD_LIBRARY_PATH)/$(LIBMLX) ./
+	$(CC) $(OBJS_EXECUTE) $(OBJS_PARSING) -I. -I$(DYLD_LIBRARY_PATH) $(DYLD_LIBRARY_PATH)/$(LIBMLX) -I$(INCLUDES) -framework OpenGL -framework Appkit -o $(NAME)
+
+%.o:%.c
+	$(CC) -I. -I$(DYLD_LIBRARY_PATH) -I$(INCLUDES) -c $< -o $@
 
 $(LIBMLX) :
 	make -C $(dir $(LIBMLX))
@@ -40,17 +35,13 @@ $(LIBMLX) :
 	$(CC) $(CFLAGS) -I $(INCLUDE) -o $@ -c $<
 
 clean :
-	$(RM) $(OBJS)
-	make -C $(dir $(LIBMLX)) clean
+	$(RM) $(OBJS_EXECUTE) $(OBJS_PARSING)
 
 fclean :
-	make clean
-	$(RM) $(NAME) $(NAME_TIME)
+	$(RM) $(OBJS_EXECUTE) $(OBJS_PARSING) $(NAME) $(LIBMLX)
 
-re:
+re :
 	make fclean
 	make all
 
-bonus:
-
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re
