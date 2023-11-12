@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:39:39 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/11 00:10:43 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/12 16:42:16 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_executor.h"
+#include "parsing.h"
 #include <math.h>
-#define WALL_X 1
-#define WALL_Y 0
-#define EA 0
-#define WE 1
-#define SO 2
-#define NO 3
+
+#define WALL_X 0
+#define WALL_Y 1
 
 void	perform_dda(t_info *info)
 {

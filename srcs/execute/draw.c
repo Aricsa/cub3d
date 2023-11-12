@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:48:56 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/11 00:00:31 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/12 15:06:30 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 #include "mlx.h"
 
 static void	draw_wall(t_info *info);
-static void	draw_floor(t_info *info);
-static void	draw_ceiling(t_info *info);
+static void	draw_floor_ceiling(t_info *info);
 
 void	draw(t_info *info)
 {
-	draw_floor(info);
+	draw_floor_ceiling(info);
 	draw_wall(info);
 }
 
@@ -42,7 +41,7 @@ static void	draw_wall(t_info *info)
 	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
 }
 
-static void	draw_floor(t_info *info)
+static void	draw_floor_ceiling(t_info *info)
 {
 	int	x;
 	int	y;
@@ -65,26 +64,6 @@ static void	draw_floor(t_info *info)
 				info->buf[y][x] = color;
 			else
 				color = floor_color;
-			y++;
-		}
-		x++;
-	}
-}
-
-static void	draw_ceiling(t_info *info)
-{
-	int	x;
-	int	y;
-	int	color;
-
-	x = 0;
-	color = BLUE;
-	while (x < SCREENWIDTH)
-	{
-		y = 0;
-		while (y < SCREENHEIGHT / 2)
-		{
-			mlx_pixel_put(info->mlx, info->win, x, y, color);
 			y++;
 		}
 		x++;

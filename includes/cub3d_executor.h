@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_executor.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:12:39 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/10 21:21:05 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/12 16:40:42 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,4 +158,6 @@ double old_dir_x, double old_plane_x);
 void	init_info(t_info *info);
 void	init_key_event(t_info *info);
 void	init_screen_buf(t_info *info);
+void	init_parse(t_parse_var *parse);
+
 #endif

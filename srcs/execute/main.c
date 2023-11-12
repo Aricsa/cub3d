@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:52:57 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/11 00:08:53 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/12 16:40:55 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "parsing.h"
 
 static int	main_loop(t_info *info);
-static void	init_parse(t_parse_var *parse);
-static void	map_test(t_info *info);
 
 int	main(int argc, char *argv[])
 {
@@ -51,23 +49,4 @@ static int	main_loop(t_info *info)
 	draw(info);
 	key_update(info);
 	return (0);
-}
-
-static void	init_parse(t_parse_var *parse)
-{
-	parse->pos_x = 0;
-	parse->pos_y = 0;
-	parse->dir_x = 0;
-	parse->dir_y = 0;
-	parse->map_width = 0;
-	parse->map_height = 0;
-	parse->character_flag = 0;
-	parse->texture_flag[0] = 0;
-	parse->texture_flag[1] = 0;
-	parse->texture_flag[2] = 0;
-	parse->texture_flag[3] = 0;
-	parse->texture_flag[4] = 0;
-	parse->texture_flag[5] = 0;
-	parse->plane_x = 0;
-	parse->plane_y = 0;
 }

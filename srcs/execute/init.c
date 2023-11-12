@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:26:19 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/11 00:03:37 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/12 16:40:34 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_executor.h"
 #include <stdlib.h>
-
-static void	init_map(t_info *info);
 
 void	init_info(t_info *info)
 {
@@ -54,27 +52,21 @@ void	init_screen_buf(t_info *info)
 	}
 }
 
-static void	init_map(t_info *info)
+void	init_parse(t_parse_var *parse)
 {
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < 10)
-	{
-		info->basic_var.map[0][i] = 1;
-		info->basic_var.map[9][i] = 1;
-	}
-	i = 0;
-	while (++i < 9)
-	{
-		j = -1;
-		while (++j < 10)
-		{
-			if (j == 0 || j == 9)
-				info->basic_var.map[i][j] = 1;
-			else
-				info->basic_var.map[i][j] = 0;
-		}
-	}
+	parse->pos_x = 0;
+	parse->pos_y = 0;
+	parse->dir_x = 0;
+	parse->dir_y = 0;
+	parse->map_width = 0;
+	parse->map_height = 0;
+	parse->character_flag = 0;
+	parse->texture_flag[0] = 0;
+	parse->texture_flag[1] = 0;
+	parse->texture_flag[2] = 0;
+	parse->texture_flag[3] = 0;
+	parse->texture_flag[4] = 0;
+	parse->texture_flag[5] = 0;
+	parse->plane_x = 0;
+	parse->plane_y = 0;
 }

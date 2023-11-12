@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_asset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:48:51 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/11 00:07:42 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/12 16:39:39 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ static int	load_texture(t_info *info)
 {
 	t_img	img;
 
-	load_image(info, info->texture[0], "textures/Brick_Wall.xpm", &img);
-	load_image(info, info->texture[1], "textures/Grass.xpm", &img);
-	load_image(info, info->texture[2], "textures/Magma_Floor.xpm", &img);
+	load_image(info, info->texture[0], info->basic_var.texture_path[0], &img);
+	load_image(info, info->texture[1], info->basic_var.texture_path[1], &img);
+	load_image(info, info->texture[2], info->basic_var.texture_path[2], &img);
 	load_image(info, info->texture[3], \
-	"textures/Wooden_Floor_Horizontal.xpm", &img);
+	info->basic_var.texture_path[3], &img);
 }

@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:03:27 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/11 00:09:17 by chbaek           ###   ########.fr       */
+/*   Updated: 2023/11/12 16:42:27 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_executor.h"
 #include <math.h>
-#include <stdio.h> // test
 
 void	raycasting(t_info *info)
 {
@@ -24,11 +23,8 @@ void	raycasting(t_info *info)
 	while (x < SCREENWIDTH)
 	{
 		set_ray_dir(info, x);
-		printf("1\n");
 		set_slope_dist(info);
-		printf("1\n");
 		perform_dda(info);
-		printf("1\n");
 		calc_draw_pos(info);
 		calc_texturing(info);
 		mapping_texture_color(info, x);
