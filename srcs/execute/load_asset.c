@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 static void	load_image(t_info *info, int *texture, char *path, t_img *img);
-static int	load_texture(t_info *info);
+static void	load_texture(t_info *info);
 
 int	init_texture(t_info *info)
 {
@@ -62,7 +62,7 @@ static void	load_image(t_info *info, int *texture, char *path, t_img *img)
 	mlx_destroy_image(info->mlx, img->img);
 }
 
-static int	load_texture(t_info *info)
+static void	load_texture(t_info *info)
 {
 	t_img	img;
 

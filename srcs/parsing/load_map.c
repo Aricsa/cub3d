@@ -56,6 +56,10 @@ void	set_fc(char *temp, int type, t_parse_var *parse)
 	if (i != 3)
 		error_print("FC texture RGB doesn't matches");
 	set_fc_atoi(char_rgb, type, parse);
+	free(char_rgb[0]);
+	free(char_rgb[1]);
+	free(char_rgb[2]);
+	free(char_rgb);
 }
 
 void	get_texture(char *temp, int type, t_parse_var *parse)
