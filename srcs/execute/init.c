@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:26:19 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/10 16:13:53 by junglee          ###   ########.fr       */
+/*   Updated: 2023/11/11 00:03:37 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_executor.h"
 #include <stdlib.h>
-# include <stdio.h>
 
 static void	init_map(t_info *info);
 
@@ -57,14 +56,20 @@ void	init_screen_buf(t_info *info)
 
 static void	init_map(t_info *info)
 {
-	for (int i = 0; i < 10; i++)
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < 10)
 	{
 		info->basic_var.map[0][i] = 1;
 		info->basic_var.map[9][i] = 1;
 	}
-	for (int i = 1; i < 9; i++)
+	i = 0;
+	while (++i < 9)
 	{
-		for (int j = 0; j < 10; j++)
+		j = -1;
+		while (++j < 10)
 		{
 			if (j == 0 || j == 9)
 				info->basic_var.map[i][j] = 1;
@@ -73,4 +78,3 @@ static void	init_map(t_info *info)
 		}
 	}
 }
-

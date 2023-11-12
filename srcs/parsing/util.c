@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   util.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/10 21:07:47 by chbaek            #+#    #+#             */
+/*   Updated: 2023/11/10 21:07:50 by chbaek           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -55,4 +67,3 @@ void	is_valid_fd(char *map, int *fd)
 	if (*fd < 0)
 		error_print("Open failed");
 }
-

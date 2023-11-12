@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_update.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:50:11 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/10 00:03:42 by junglee          ###   ########.fr       */
+/*   Updated: 2023/11/11 00:04:24 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static void	move_ws_pos(t_info *info);
 static void	rotate_plane(t_info *info);
-static void move_ad_pos(t_info *info);
+static void	move_ad_pos(t_info *info);
 
 void	key_update(t_info *info)
 {
@@ -52,7 +52,7 @@ static void	move_ws_pos(t_info *info)
 	}
 }
 
-static void move_ad_pos(t_info *info)
+static void	move_ad_pos(t_info *info)
 {
 	t_parse_var	*player;
 

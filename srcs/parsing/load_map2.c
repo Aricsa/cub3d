@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:52:56 by chbaek            #+#    #+#             */
-/*   Updated: 2023/11/10 17:15:42 by junglee          ###   ########.fr       */
+/*   Updated: 2023/11/10 21:11:49 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,28 @@
 
 void	is_same_texture(t_parse_var *parse)
 {
-	int max_len;
-	
+	int	max_len;
+
 	if (parse->fc_color[0][0] == parse->fc_color[1][0] && \
 		parse->fc_color[0][1] == parse->fc_color[1][1] && \
 		parse->fc_color[0][2] == parse->fc_color[1][2])
-			error_print("Floar and ceiling is same color..");
-	max_len = max(ft_strlen(parse->texture_path[0]), ft_strlen(parse->texture_path[1]));
+		error_print("Floar and ceiling is same color..");
+	max_len = max(ft_strlen(parse->texture_path[0]), \
+				ft_strlen(parse->texture_path[1]));
 	max_len = max(max_len, ft_strlen(parse->texture_path[2]));
 	max_len = max(max_len, ft_strlen(parse->texture_path[3]));
-	if (ft_strncmp(parse->texture_path[0], parse->texture_path[1], max_len) == 0 || \
-		ft_strncmp(parse->texture_path[0], parse->texture_path[2], max_len) == 0 || \
-		ft_strncmp(parse->texture_path[0], parse->texture_path[3], max_len) == 0 || \
-		ft_strncmp(parse->texture_path[1], parse->texture_path[2], max_len) == 0 || \
-		ft_strncmp(parse->texture_path[1], parse->texture_path[3], max_len) == 0 || \
-		ft_strncmp(parse->texture_path[2], parse->texture_path[3], max_len) == 0)
+	if (ft_strncmp(parse->texture_path[0], \
+		parse->texture_path[1], max_len) == 0 || \
+		ft_strncmp(parse->texture_path[0], \
+		parse->texture_path[2], max_len) == 0 || \
+		ft_strncmp(parse->texture_path[0], \
+		parse->texture_path[3], max_len) == 0 || \
+		ft_strncmp(parse->texture_path[1], \
+		parse->texture_path[2], max_len) == 0 || \
+		ft_strncmp(parse->texture_path[1], \
+		parse->texture_path[3], max_len) == 0 || \
+		ft_strncmp(parse->texture_path[2], \
+		parse->texture_path[3], max_len) == 0)
 		error_print("Some textures are same color..");
 }
 
@@ -40,7 +47,7 @@ void	load_map2(char *temp, int fd, t_parse_var *parse)
 	while (temp != NULL)
 	{
 		if (temp[0] != '\n')
-			break;
+			break ;
 		free(temp);
 		temp = get_next_line(fd);
 	}

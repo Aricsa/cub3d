@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 22:53:05 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/08 15:59:28 by junglee          ###   ########.fr       */
+/*   Updated: 2023/11/11 00:01:20 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@
 #define K_AR_L 123
 #define K_AR_R 124
 
-
-int		key_press(int key, t_info *info)
+int	key_press(int key, t_info *info)
 {
 	if (key == K_ESC)
 		exit(0);
@@ -41,7 +40,7 @@ int		key_press(int key, t_info *info)
 	return (0);
 }
 
-int		key_release(int key, t_info *info)
+int	key_release(int key, t_info *info)
 {
 	if (key == K_ESC)
 		exit(0);

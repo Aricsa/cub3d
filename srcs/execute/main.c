@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: chbaek <chbaek@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:52:57 by junglee           #+#    #+#             */
-/*   Updated: 2023/11/10 17:28:42 by junglee          ###   ########.fr       */
+/*   Updated: 2023/11/11 00:08:53 by chbaek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "cub3d_executor.h"
 #include "parsing.h"
-#include <stdlib.h> // test
 
 static int	main_loop(t_info *info);
 static void	init_parse(t_parse_var *parse);
 static void	map_test(t_info *info);
 
-#include <stdio.h> // test
 int	main(int argc, char *argv[])
 {
 	t_info	info;
@@ -41,8 +39,6 @@ int	main(int argc, char *argv[])
 	init_screen_buf(&info);
 	if (init_texture(&info) < 0)
 		return (1);
-	map_test(&info);
-	printf("%f %f", info.basic_var.pos_x, info.basic_var.pos_y);
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 0, &key_press, &info);
 	mlx_hook(info.win, X_EVENT_KEY_RELEASE, 0, &key_release, &info);
@@ -72,28 +68,6 @@ static void	init_parse(t_parse_var *parse)
 	parse->texture_flag[3] = 0;
 	parse->texture_flag[4] = 0;
 	parse->texture_flag[5] = 0;
-}
-
-static void	map_test(t_info *info)
-{
-	for(int i = 0; i < info->basic_var.map_height; i++)
-	{
-		for (int j = 0; j < (int)ft_strlen(info->basic_var.char_map[i]); j++)
-		{
-			if (info->basic_var.map[i][j] != 0 && info->basic_var.map[i][j] != 1)
-				printf("-1");
-			else
-				printf("%d ", info->basic_var.map[i][j]);
-		}
-		printf("\n");
-	}
-	printf("\n\nnext\n\n");
-	for(int i = 0; i < info->basic_var.map_height; i++)
-	{
-		for (int j = 0; j < (int)ft_strlen(info->basic_var.char_map[i]); j++)
-		{
-			printf("%c ", info->basic_var.char_map[i][j]);
-		}
-		printf("\n");
-	}
+	parse->plane_x = 0;
+	parse->plane_y = 0;
 }
